@@ -41,7 +41,7 @@ const Community = () => {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
         >
-          Fetch the Memes, Hold the $MOCHI, Love the Pack 
+          Fetch the Memes, Hold the $MOCHI, Love the Community 
           Follow and join our community on X and Telegram for memes!.
         </motion.p>
 

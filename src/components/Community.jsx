@@ -59,10 +59,10 @@ const Community = () => {
             target="_blank"
             rel="noopener noreferrer"
             // 2. Updated styling for X (black background)
-            className="flex items-center justify-center gap-3 text-lg font-semibold text-white bg-[#1a1a1f] hover:bg-[#25252c]k px-8 py-4 rounded-full shadow-lg shadow-gray-500/20 transition-all duration-300 transform hover:scale-105"
+            className="flex items-center justify-center gap-3 text-lg font-semibold text-white bg-[#1a1a1f] hover:bg-[#25252c]k px-8 py-4 rounded-full shadow-lg shadow-[#2AABEE]/20 transition-all duration-300 transform hover:scale-105"
         >
             {/* 3. Replaced icon */}
-            <FaXTwitter size={24} /> 
+            <FaXTwitter size={24} className="text-[#a78bfa]" /> 
             {/* 4. Changed text */}
             Follow on X
         </a>
@@ -72,9 +72,9 @@ const Community = () => {
             href="https://t.me/+qFyykOdCJo9iZjE9" // 👈 Replace with your Telegram URL
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-3 text-lg font-semibold text-white bg-[#2AABEE]/90 hover:bg-[#2AABEE] px-8 py-4 rounded-full shadow-lg shadow-[#2AABEE]/20 transition-all duration-300 transform hover:scale-105"
+            className="flex items-center justify-center gap-3 text-lg font-semibold text-white bg-[#1a1a1f] hover:bg-[#25252c] px-8 py-4 rounded-full shadow-lg shadow-[#2AABEE]/20 transition-all duration-300 transform hover:scale-105"
           >
-            <FaTelegramPlane size={24} />
+            <FaTelegramPlane size={24} className="text-[#86efac]" />
             Join Telegram
           </a>
         </motion.div>

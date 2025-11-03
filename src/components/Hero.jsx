@@ -136,7 +136,7 @@ const Hero = () => {
             Born from love, fueled by memes.<br />Mochi on Solana
           </h2>
           <p className="mt-6 text-gray-400 text-base sm:text-lg max-w-md mx-auto md:mx-0">
-            Mochi Love, Mochi Memes, Mochi Magic
+            Fetch the Memes, Hold the $MOCHI, Love the Community 
           </p>
           {/* ... Wallet Address ... */}
           <div className="mt-8 bg-[#1a1a1f]/60 border border-white/10 backdrop-blur-sm rounded-xl px-5 py-4 flex items-center justify-between gap-3 shadow-[0_0_20px_rgba(255,255,255,0.05)]">

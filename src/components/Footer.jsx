@@ -28,7 +28,7 @@ const Footer = () => {
               &copy; {new Date().getFullYear()} Mochi. All rights reserved.
             </p>
             <p className="mt-1 text-sm text-white/40 leading-snug"> {/* Increased size */}
-              Just a dog. Just a meme. Not financial advice.
+              Fetch the Memes, Hold the $MOCHI, Love the Community 
             </p>
           </div>
         </div>

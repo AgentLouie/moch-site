@@ -6,19 +6,19 @@ import { ChevronDown } from "lucide-react";
 const faqData = [
   {
     q: "What is $MOCHI?",
-    a: "Mochi is a community-driven memecoin on Solana — inspired by love, fun, and our adorable mascot dog, Mochi. It’s a movement for memes, positivity, and togetherness, where every holder becomes part of a growing, playful family.",
+    a: "Mochi is a community-driven memecoin on Solana inspired by love, fun, and our adorable mascot dog, Mochi. It’s a movement for memes, positivity, and togetherness, where every holder becomes part of a growing, playful family.",
   },
   {
     q: "Why does Mochi matter in 2025?",
-    a: "In a market full of hype-driven memecoins, Mochi stands out by prioritizing community, creativity, and genuine connection. As crypto matures, real engagement and purpose matter more than speculation — and Mochi leads that charge with love and authenticity.",
+    a: "In a market full of hype-driven memecoins, Mochi stands out by prioritizing community, creativity, and genuine connection. As crypto matures, real engagement and purpose matter more than speculation and Mochi leads that charge with love and authenticity.",
   },
   {
     q: "What’s the vision for the future of $MOCHI?",
-    a: "Mochi’s vision is to grow into a cultural symbol of joy and kindness within the Solana ecosystem — expanding through community projects, collaborations, and creative initiatives that keep the fun alive.",
+    a: "Mochi’s vision is to grow into a cultural symbol of joy and kindness within the Solana ecosystem expanding through community projects, collaborations, and creative initiatives that keep the fun alive.",
   },
   {
     q: "Why should I join the Mochi Community?",
-    a: "Joining the Mochi community means joining a positive, meme-loving movement built on fun and friendship. It’s not just about holding a coin — it’s about spreading smiles, building culture, and being part of something wholesome in crypto.",
+    a: "Joining the Mochi community means joining a positive, meme-loving movement built on fun and friendship. It’s not just about holding a coin it’s about spreading smiles, building culture, and being part of something wholesome in crypto.",
   },
 ];
 

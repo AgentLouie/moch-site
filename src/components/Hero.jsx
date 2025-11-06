@@ -1,10 +1,28 @@
 import React, { useState } from "react";
-// No longer need react-router-dom's Link here
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Copy } from "lucide-react";
-import { FaXTwitter } from "react-icons/fa6";
 import { FaTelegramPlane } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import mochiImage from "/mochi-meme.png";
+
+// --- Animation Variants for Staggered Text ---
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.3 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 100 }
+  }
+};
+// ---------------------------------------------
 
 const Hero = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,27 +41,26 @@ const Hero = () => {
       {/* ... Ambient glows ... */}
       <div className="absolute -top-40 -left-40 w-[400px] h-[400px] bg-[#a78bfa]/25 blur-[120px] rounded-full animate-pulse" />
       <div className="absolute bottom-0 right-0 w-[450px] h-[450px] bg-[#f5a9b8]/20 blur-[160px] rounded-full animate-pulse" />
-      
-      {/* ✨ PAW PRINTS FIX: Changed z-50 to z-0, added opacity, and adjusted position */}
-      <img
-        src="/paw.png"
-        alt="Paw print"
-        className="absolute top-1/4 left-1/3 w-64 h-64 opacity-50 rotate-12 z-0"
-      />
-      <img
-        src="/paw.png"
-        alt="Paw print"
-        className="absolute bottom-1/4 right-1/3 w-48 h-48 opacity-30 -rotate-12 z-0"
-      />
 
+      {/* Background Paws (Visible on Desktop only to avoid clutter on mobile) */}
+      <img
+        src="/paw.png"
+        alt="Paw print"
+        className="absolute top-1/4 left-[10%] w-32 h-32 md:w-64 md:h-64 opacity-10 rotate-12 z-0 hidden md:block"
+      />
+      <img
+        src="/paw.png"
+        alt="Paw print"
+        className="absolute bottom-1/4 right-[10%] w-24 h-24 md:w-48 md:h-48 opacity-10 -rotate-12 z-0 hidden md:block"
+      />
 
       {/* Header */}
       <header className="absolute top-0 w-full flex items-center justify-between px-6 sm:px-8 py-6 z-20 bg-[#0a0a0f]/40 backdrop-blur-md border-b border-white/10">
         <a href="/" className="flex items-center gap-3">
-          <img 
-            src="/logo.png" // 👈 Make sure your logo is here
-            alt="Mochi Logo" 
-            className="h-8 w-8 sm:h-9 sm:w-9" 
+          <img
+            src="/logo.png"
+            alt="Mochi Logo"
+            className="h-8 w-8 sm:h-9 sm:w-9"
           />
           <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-[#a78bfa] via-[#f5a9b8] to-[#86efac] bg-clip-text text-transparent font-bungee">
             Mochi
@@ -53,12 +70,14 @@ const Hero = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 text-sm">
           <a href="/" className="hover:text-[#a78bfa] transition font-sans">Home</a>
-          <a href="#gallery" className="hover:text-[#f5a9b8] transition font-sans">Meme Gallery</a>
-          {/* ✨ NEW LINK */}
-          <a href="#faq" className="hover:text-[#86efac] transition font-sans">FAQ</a>
-          <a href="#community" className="hover:text-[#a78bfa] transition font-sans">Community</a>
+          <a href="/tokenomics" className="hover:text-[#f5a9b8] transition font-sans">Tokenomics</a>
+          <a href="/gallery" className="hover:text-[#f5a9b8] transition font-sans">Meme Gallery</a>
+          <a href="/faq" className="hover:text-[#86efac] transition font-sans">FAQ</a>
+          <a href="/community" className="hover:text-[#a78bfa] transition font-sans">Community</a>
           <a
             href="https://x.com/mochidog_sol"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-gradient-to-r from-[#a78bfa] to-[#f5a9b8] px-5 py-2 rounded-full text-white shadow-[0_0_15px_rgba(245,169,184,0.4)] hover:opacity-90 transition"
           >
             Join Us
@@ -84,25 +103,46 @@ const Hero = () => {
               className="absolute top-full left-0 w-full bg-[#0a0a0f]/95 backdrop-blur-lg border-t border-white/10 flex flex-col items-center py-6 space-y-5 text-sm md:hidden"
             >
               <a href="/" className="hover:text-[#a78bfa]" onClick={() => setMenuOpen(false)}>Home</a>
+              <a href="#tokenomics" className="hover:text-[#f5a9b8]" onClick={() => setMenuOpen(false)}>Tokenomics</a>
               <a href="#gallery" className="hover:text-[#f5a9b8]" onClick={() => setMenuOpen(false)}>Meme Gallery</a>
-              {/* ✨ NEW LINK */}
               <a href="#faq" className="hover:text-[#86efac]" onClick={() => setMenuOpen(false)}>FAQ</a>
               <a href="#community" className="hover:text-[#a78bfa]" onClick={() => setMenuOpen(false)}>Community</a>
               <a
-                href="#community"
+                href="https://x.com/mochidog_sol"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-gradient-to-r from-[#a78bfa] to-[#f5a9b8] px-5 py-2 rounded-full text-white shadow-[0_0_15px_rgba(245,169,184,0.4)] hover:opacity-90 transition"
                 onClick={() => setMenuOpen(false)}
               >
                 Join Us
               </a>
+              {/* Social Links for Mobile Menu */}
+              <div className="flex gap-8 pt-4 border-t border-white/10 w-[90%] justify-center mt-4">
+                <a
+                  href="https://x.com/mochidog_sol"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/70 hover:text-white transition"
+                >
+                  <FaXTwitter size={26} />
+                </a>
+                <a
+                  href="https://t.me/+qFyykOdCJo9iZjE9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/70 hover:text-white transition"
+                >
+                  <FaTelegramPlane size={26} />
+                </a>
+              </div>
             </motion.nav>
           )}
         </AnimatePresence>
       </header>
 
-      {/* Hero content (This is relative, so it stacks on top of z-0 elements) */}
+      {/* Hero content */}
       <div className="relative flex flex-col md:flex-row items-center justify-center w-full px-6 sm:px-10 pt-32 md:pt-40 gap-12 md:gap-16">
-        
+
         {/* Mochi Image */}
         <motion.div
           className="flex justify-center md:w-1/2 order-1 md:order-none"
@@ -127,19 +167,27 @@ const Hero = () => {
           />
         </motion.div>
 
-        {/* Text Section */}
-        <div className="md:w-1/2 text-center md:text-left">
-          <h1 className="text-6xl sm:text-7xl md:text-8xl font-extrabold tracking-wide font-bungee bg-gradient-to-r from-[#a78bfa] via-[#f5a9b8] to-[#86efac] bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(255,255,255,0.25)] mb-4">
+        {/* ✨ TEXT SECTION - Now animated with stagger */}
+        <motion.div
+          className="md:w-1/2 text-center md:text-left"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.h1 variants={itemVariants} className="text-6xl sm:text-7xl md:text-8xl font-extrabold tracking-wide font-bungee bg-gradient-to-r from-[#a78bfa] via-[#f5a9b8] to-[#86efac] bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(255,255,255,0.25)] mb-4">
             MOCHI
-          </h1>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold bg-gradient-to-r from-[#a78bfa] via-[#f5a9b8] to-[#86efac] bg-clip-text text-transparent font-['Cormorant_Garamond'] drop-shadow-[0_0_25px_rgba(255,255,255,0.15)] leading-snug">
+          </motion.h1>
+
+          <motion.h2 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl font-semibold bg-gradient-to-r from-[#a78bfa] via-[#f5a9b8] to-[#86efac] bg-clip-text text-transparent font-['Cormorant_Garamond'] drop-shadow-[0_0_25px_rgba(255,255,255,0.15)] leading-snug">
             Born from love, fueled by memes.<br />Mochi on Solana
-          </h2>
-          <p className="mt-6 text-gray-400 text-base sm:text-lg max-w-md mx-auto md:mx-0">
-            Fetch the Memes, Hold the $MOCHI, Love the Community 
-          </p>
+          </motion.h2>
+
+          <motion.p variants={itemVariants} className="mt-6 text-gray-400 text-base sm:text-lg max-w-md mx-auto md:mx-0">
+            Fetch the Memes, Hold the $MOCHI, Love the Community
+          </motion.p>
+
           {/* ... Wallet Address ... */}
-          <div className="mt-8 bg-[#1a1a1f]/60 border border-white/10 backdrop-blur-sm rounded-xl px-5 py-4 flex items-center justify-between gap-3 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+          <motion.div variants={itemVariants} className="mt-8 bg-[#1a1a1f]/60 border border-white/10 backdrop-blur-sm rounded-xl px-5 py-4 flex items-center justify-between gap-3 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
             <span className="text-sm text-gray-300 truncate">{walletAddress}</span>
             <button
               onClick={handleCopy}
@@ -148,27 +196,32 @@ const Hero = () => {
               <Copy size={16} />
               <span className="text-xs">{copied ? "Copied!" : "Copy"}</span>
             </button>
-          </div>
-          {/* ... Social Links ... */}
-          <div className="flex gap-6 mt-8 justify-center md:justify-start">
-            <a
-              href="https://x.com/mochidog_sol" // Replace with your URL
+          </motion.div>
+
+          {/* ✨ SOCIAL LINKS - Now with hover animation */}
+          <motion.div variants={itemVariants} className="flex gap-6 mt-8 justify-center md:justify-start">
+            <motion.a
+              href="https://x.com/mochidog_sol"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#1a1a1f] hover:bg-[#25252c] rounded-full p-4 shadow-md transition"
+              whileHover={{ scale: 1.15, rotate: 5 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
               <FaXTwitter size={22} className="text-[#a78bfa]" />
-            </a>
-            <a
-              href="https://t.me/+qFyykOdCJo9iZjE9" // Replace with your URL
+            </motion.a>
+            <motion.a
+              href="https://t.me/+qFyykOdCJo9iZjE9"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-[#1a1a1f] hover:bg-[#25252c] rounded-full p-4 shadow-md transition"
+              whileHover={{ scale: 1.15, rotate: -5 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
               <FaTelegramPlane size={22} className="text-[#86efac]" />
-            </a>
-          </div>
-        </div>
+            </motion.a>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

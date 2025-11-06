@@ -1,12 +1,15 @@
-import React, { useState } from "react"; // 1. Added useState
+import React, { useState } from "react";
 import Footer from "./Footer";
-import { motion, AnimatePresence } from "framer-motion"; // 1. Added motion imports
-import { Menu, X } from "lucide-react"; // 1. Added icon imports
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
+// ✨ FIX: Added missing social icon imports
+import { FaXTwitter } from "react-icons/fa6";
+import { FaTelegramPlane } from "react-icons/fa";
 
-const images = Array.from({ length: 29 }, (_, i) => `/carousel/${i + 1}.png`);
+const images = Array.from({ length: 36 }, (_, i) => `/carousel/${i + 1}.png`);
 
 const GalleryPage = () => {
-  const [menuOpen, setMenuOpen] = useState(false); // 2. Added menu state
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen flex flex-col bg-gradient-to-br from-[#0b0b1a] via-[#141421] to-[#0a0a0f] text-white overflow-hidden">
@@ -14,11 +17,23 @@ const GalleryPage = () => {
       <div className="absolute -top-40 -left-40 w-[400px] h-[400px] bg-[#a78bfa]/25 blur-[120px] rounded-full animate-pulse" />
       <div className="absolute bottom-0 right-0 w-[450px] h-[450px] bg-[#f5a9b8]/20 blur-[160px] rounded-full animate-pulse" />
 
-      {/* Header */}
+      {/* ✨ PAW PRINTS: Added background paws */}
+      <img
+        src="/paw.png"
+        alt="Paw print"
+        className="absolute top-1/4 left-[10%] w-32 h-32 md:w-64 md:h-64 opacity-10 rotate-12 z-0"
+      />
+      <img
+        src="/paw.png"
+        alt="Paw print"
+        className="absolute bottom-1/4 right-[10%] w-24 h-24 md:w-48 md:h-48 opacity-10 -rotate-12 z-0"
+      />
+
+      {/* Header (Now identical to Hero.jsx) */}
       <header className="absolute top-0 w-full flex items-center justify-between px-6 sm:px-8 py-6 z-20 bg-[#0a0a0f]/40 backdrop-blur-md border-b border-white/10">
         <a href="/" className="flex items-center gap-3">
           <img 
-            src="/logo.png" // 👈 Make sure your logo is here
+            src="/logo.png"
             alt="Mochi Logo" 
             className="h-8 w-8 sm:h-9 sm:w-9" 
           />
@@ -30,8 +45,8 @@ const GalleryPage = () => {
         {/* Desktop Nav */}
         <nav className="hidden md:flex gap-8 text-sm">
           <a href="/" className="hover:text-[#a78bfa] transition font-sans">Home</a>
+          <a href="/#tokenomics" className="hover:text-[#f5a9b8] transition font-sans">Tokenomics</a>
           <a href="/#gallery" className="hover:text-[#f5a9b8] transition font-sans">Meme Gallery</a>
-          {/* ✨ NEW LINK */}
           <a href="/#faq" className="hover:text-[#86efac] transition font-sans">FAQ</a>
           <a href="/#community" className="hover:text-[#a78bfa] transition font-sans">Community</a>
           <a
@@ -61,8 +76,8 @@ const GalleryPage = () => {
               className="absolute top-full left-0 w-full bg-[#0a0a0f]/95 backdrop-blur-lg border-t border-white/10 flex flex-col items-center py-6 space-y-5 text-sm md:hidden"
             >
               <a href="/" className="hover:text-[#a78bfa]" onClick={() => setMenuOpen(false)}>Home</a>
+              <a href="/#tokenomics" className="hover:text-[#f5a9b8]" onClick={() => setMenuOpen(false)}>Tokenomics</a>
               <a href="/#gallery" className="hover:text-[#f5a9b8]" onClick={() => setMenuOpen(false)}>Meme Gallery</a>
-              {/* ✨ NEW LINK */}
               <a href="/#faq" className="hover:text-[#86efac]" onClick={() => setMenuOpen(false)}>FAQ</a>
               <a href="/#community" className="hover:text-[#a78bfa]" onClick={() => setMenuOpen(false)}>Community</a>
               <a
@@ -72,44 +87,79 @@ const GalleryPage = () => {
               >
                 Join Us
               </a>
+              {/* ✨ FIX: Added missing social links */}
+              <div className="flex gap-8 pt-4 border-t border-white/10 w-[90%] justify-center mt-4">
+                <a
+                  href="https://x.com/mochidog_sol"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/70 hover:text-white transition"
+                >
+                  <FaXTwitter size={26} />
+                </a>
+                <a
+                  href="https://t.me/+qFyykOdCJo9iZjE9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/70 hover:text-white transition"
+                >
+                  <FaTelegramPlane size={26} />
+                </a>
+              </div>
             </motion.nav>
           )}
         </AnimatePresence>
       </header>
 
-      {/* 7. PADDING - Added pt-24 to push content below the absolute header */}
-      <div className="w-full flex justify-center border-b border-white/5 bg-[#0a0a0f]/30 backdrop-blur-md py-4 relative z-10 pt-24">
+      {/* Back Button */}
+      {/* ✨ ANIMATION: Added whileInView */}
+      <motion.div 
+        className="w-full flex justify-center border-b border-white/5 bg-[#0a0a0f]/30 backdrop-blur-md py-4 relative z-10 pt-24"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <a
           href="/"
           className="px-6 py-2 rounded-full bg-gradient-to-r from-[#a78bfa]/20 to-[#f5a9b8]/20 border border-white/10 text-sm text-white hover:from-[#a78bfa]/40 hover:to-[#f5a9b8]/40 hover:shadow-[0_0_15px_rgba(245,169,184,0.4)] transition-all"
         >
           ← Back to Home
         </a>
-      </div>
+      </motion.div>
 
-      {/* ... Gallery Title (no changes) ... */}
-      <div className="text-center mt-12 relative z-10">
+      {/* Gallery Title */}
+      {/* ✨ ANIMATION: Added whileInView */}
+      <motion.div 
+        className="text-center mt-12 relative z-10"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.5 }}
+      >
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bungee font-bold bg-gradient-to-r from-[#a78bfa] via-[#f5a9b8] to-[#86efac] bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(255,255,255,0.2)]">
           Gallery
         </h1>
         <p className="text-gray-400 mt-3 text-sm sm:text-base">
           Explore all Mochi moments captured in time 🐾
         </p>
-      </div>
+      </motion.div>
 
-      {/* ... Gallery Grid (no changes) ... */}
+      {/* Gallery Grid */}
       <div className="relative flex-1 w-full max-w-6xl mx-auto py-16 px-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 place-items-center z-10">
         {images.map((src, index) => (
-          <div
+          <motion.div
             key={index}
-            className="w-full aspect-square rounded-xl bg-[#111]/60 border border-white/10 overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.05)] hover:scale-105 hover:shadow-[0_0_30px_rgba(167,139,250,0.3)] transition"
+            className="w-full aspect-square rounded-xl bg-[#111]/60 border border-white/10 overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.05)] transition"
+            whileHover={{ scale: 1.05, zIndex: 10, y: -5 }} // ✨ Replaced class with springy hover
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
           >
             <img
               src={src}
               alt={`gallery-${index}`}
-              className="w-full h-full object-contain" // no cropping
+              className="w-full h-full object-cover" // ✨ FIX: Changed to object-cover
             />
-          </div>
+          </motion.div>
         ))}
       </div>
 

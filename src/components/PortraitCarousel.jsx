@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, useMotionValue } from "framer-motion";
 
-const images = Array.from({ length: 29 }, (_, i) => `/carousel/${i + 1}.png`);
+const images = Array.from({ length: 36 }, (_, i) => `/carousel/${i + 1}.png`);
 
 const PortraitCarousel = () => {
   const [current, setCurrent] = useState(0);
@@ -88,27 +88,34 @@ const PortraitCarousel = () => {
       {/* Content container */}
       <div className="relative z-10 flex flex-col items-center gap-12">
         
-        {/* ✨ Title Wrapper (with Paws) */}
+        {/* ✨ Title Wrapper (Symmetrical paws, animates on scroll) */}
         <motion.div 
           className="relative flex items-center justify-center gap-4 sm:gap-6"
           initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }} // Changed to whileInView
+          viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          {/* Left Paw */}
+          {/* Left Paw (resized) */}
           <img
             src="/paw.png"
             alt="Paw"
-            className="w-24 h-24 sm:w-32 sm:h-32 opacity-70 -rotate-12"
+            className="w-8 h-8 sm:w-10 sm:h-10 opacity-70 -rotate-12"
           />
 
           {/* Title */}
-          <h2 // Removed motion. from h2
+          <h2
             className="text-4xl sm:text-5xl md:text-6xl font-bungee font-bold bg-gradient-to-r from-[#a78bfa] via-[#f5a9b8] to-[#86efac] bg-clip-text text-transparent text-center"
           >
             Meme Gallery
           </h2>
 
+          {/* Right Paw (added back) */}
+          <img
+            src="/paw.png"
+            alt="Paw"
+            className="w-8 h-8 sm:w-10 sm:h-10 opacity-70 rotate-12"
+          />
         </motion.div>
 
         {/* Carousel container */}
@@ -126,7 +133,7 @@ const PortraitCarousel = () => {
                 key={index}
                 src={src}
                 alt={`carousel-${index}`}
-                className="absolute rounded-2xl object-cover select-none border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.7)]"
+                className="absolute rounded-2xl object-cover select-none border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.7)] cursor-pointer"
                 style={{
                   width: `${cardSize}px`,
                   height: `${cardSize}px`,
@@ -134,6 +141,7 @@ const PortraitCarousel = () => {
                   boxShadow: "0 0 40px rgba(167,139,250,0.25)",
                 }}
                 animate={{ scale, x, opacity }}
+                whileHover={{ scale: 1.05 }} // ✨ Added hover effect
                 transition={{ type: "spring", stiffness: 120, damping: 18 }}
                 draggable={false}
               />
@@ -141,12 +149,13 @@ const PortraitCarousel = () => {
           })}
         </motion.div>
 
-        {/* "View All" button ANIMATED */}
+        {/* ✨ "View All" button (Animates on scroll) */}
         <motion.a
           href="/gallery"
-          className="text-white/80 hover:text-white text-sm sm:text-base px-6 py-2 border border-white/10 rounded-full bg-[#1a1a1f]/40 hover:bg-[#1a1a1f]/70 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,255,0.1)] transition"
+          className="text-white/80 hover:text-white text-sm sm:text-base px-6 py-2 border border-white/10 rounded-full bg-[#1a1a1f]/40 hover:bg-[#1a1a1f]/70 backdrop-blur-md shadow-[0_0_15px_rgba(255,255,250,0.1)] transition"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }} // Changed to whileInView
+          viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, ease: "easeInOut", delay: 0.1 }}
         >
           View Full Gallery →

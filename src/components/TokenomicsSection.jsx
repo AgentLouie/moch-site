@@ -55,8 +55,8 @@ const Tokenomics = () => {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5, delay: 0.1, ease: "easeInOut" }}
           >
-            $MOCHI launched with transparency and simplicity to ensure long-term growth and trust. 
-            No team allocation. Just a 100% fair launch designed to let the community decide the future.
+            $MOCHI isn’t just another token it’s a movement born from love and transparency.
+            No team bags. No secret deals. Just a 100% fair launch where the community holds the leash and drives the future.
           </motion.p>
         </div>
 

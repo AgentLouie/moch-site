@@ -1,34 +1,40 @@
-import React from 'react';
-import { AnimatePresence } from 'framer-motion';
-import { useTransitionStore } from './hooks/usePageTransition';
-import PageLoader from './components/PageLoader';
-import Hero from './components/Hero';
-import PortraitCarousel from './components/PortraitCarousel';
-import Tokenomics from './components/TokenomicsSection';
-import Faq from './components/Faq';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Hero from "./components/Hero";
+import SloganSection from "./components/SloganSection";
+import PortraitCarousel from "./components/PortraitCarousel";
+import Footer from "./components/Footer";
+import GalleryPage from "./components/GalleryPage"; // ✅ your full gallery component
 import Community from './components/Community';
-import Footer from './components/Footer';
-// (And your other components)
-
+import Faq from './components/Faq';
+import Tokenomics from "./components/TokenomicsSection";
+import BackToTopButton from "./components/BackToTopButton";
 function App() {
-  // Listen to the global state
-  const isLoading = useTransitionStore((state) => state.isLoading);
-
   return (
-    <div className="App">
-      {/* This will show the PageLoader when isLoading is true */}
-      <AnimatePresence>
-        {isLoading && <PageLoader />}
-      </AnimatePresence>
+    <Router>
+      <div className="min-h-screen bg-[#0b0b0b] text-white overflow-x-hidden">
+        <Routes>
+          {/* 🏠 Home Page */}
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero />
+                <SloganSection />
+                <PortraitCarousel />
+                <Tokenomics />
+                <Faq />
+                <Community />
+                <Footer />
+                <BackToTopButton /> 
+              </>
+            }
+          />
 
-      <Hero />
-      <PortraitCarousel />
-      <Tokenomics />
-      <Faq />
-      <Community />
-      <Footer />
-      {/* (And the rest of your page) */}
-    </div>
+          {/* 🖼️ Gallery Page */}
+          <Route path="/gallery" element={<GalleryPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

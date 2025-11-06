@@ -4,7 +4,7 @@ import { Copy, Check } from "lucide-react";
 
 const Tokenomics = () => {
   const [copied, setCopied] = useState(false);
-  const contractAddress = "SOON!";
+  const contractAddress = "SOON";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(contractAddress);
